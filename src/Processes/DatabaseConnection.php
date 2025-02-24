@@ -27,6 +27,7 @@ class DatabaseConnection
             //echo "No conn detected";
         } else {
             echo "Database Conected";
+            return $dbConn;
         }
     }
 }
