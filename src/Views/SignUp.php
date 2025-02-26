@@ -32,7 +32,6 @@
                 <label class="label" for="input">Phone Number</label>
             </div>
             <input class="submit-btn" type="submit" value="Sign Up" name="signup" />
-            <hr>
             <p>Got Account?</p>
             <a href="./Login.php">
                 Sign In

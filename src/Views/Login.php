@@ -22,7 +22,6 @@
                 <label class="label" for="input">Enter Password</label>
             </div>
             <input class="submit-btn" type="submit" value="Sign In" name="signin" />
-            <hr>
             <p>No Account?</p>
             <a href="./SignUp.php">
                 Sign UP
