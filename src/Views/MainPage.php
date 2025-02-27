@@ -13,18 +13,26 @@
 <body class="body">
 
     <div class="navbar">
-        <button class="value">
-            Dashboard
-        </button>
-        <button class="value">
-            View
-        </button>
-        <button class="value">
-            Profile
-        </button>
-        <button class="value">
-            Notifications
-        </button>
+        <form method="POST">
+            <button class="value" type="submit" name="dashboard">
+                Dashboard
+            </button>
+        </form>
+        <form method="POST">
+            <button class="value" type="submit" name="search">
+                Search
+            </button>
+        </form>
+        <form method="POST">
+            <button class="value" type="submit" name="profile">
+                Profile
+            </button>
+        </form>
+        <form method="POST">
+            <button class="value" type="submit" name="notifications">
+                Notifications
+            </button>
+        </form>
 
         <form method="POST">
             <button class="value" type=submit name="signOut">
@@ -78,5 +86,13 @@
 include("../Services/Authentication.php");
 if (isset($_POST["signOut"])) {
     processSignOut();
+} else if (isset($_POST["notifications"])) {
+    header("location:Notifications.php");
+} else if (isset($_POST["profile"])) {
+    header("location:Profile.php");
+} else if (isset($_POST["search"])) {
+    header("location:Search.php");
+} else if (isset($_POST["dashboard"])) {
+    header("location:MainPage.php");
 }
 ?>
