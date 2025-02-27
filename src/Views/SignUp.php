@@ -9,7 +9,7 @@
 
 <body class="AuthBody">
     <div>
-        <form class="form-control" action="">
+        <form class="form-control" method="POST">
             <p class="title">Sign Up</p>
             <div class="input-field">
                 <input required="" class="input" type="text" name="email" />
@@ -31,7 +31,7 @@
                 <input required="" class="input" type="text" name="phonenum" />
                 <label class="label" for="input">Phone Number</label>
             </div>
-            <input class="submit-btn" type="submit" value="Sign Up" name="signup" />
+            <input class="submit-btn" type="submit" value="Sign Up" name="signUp" />
             <p>Got Account?</p>
             <a href="./Login.php">
                 Sign In
@@ -42,3 +42,9 @@
 </body>
 
 </html>
+<?php
+include("../Services/Authentication.php");
+if (isset($_POST["signUp"])) {
+    processSignUp($_POST["email"], $_POST["password"], $_POST["firstname"], $_POST["lastname"], $_POST["phonenum"]);
+}
+?>

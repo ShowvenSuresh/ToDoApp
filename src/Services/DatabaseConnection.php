@@ -14,7 +14,7 @@ class DatabaseConnection
         $this->dbHost = $_SERVER["DATABASE_HOST"];
         $this->dbUser = $_SERVER["DATABASE_USER"];
         $this->dbPassword = $_SERVER["DATABASE_PASSWORD"];
-        $this->dbName = $_SERVER["DATABSE_NAME"];
+        $this->dbName = $_SERVER["DATABASE_NAME"];
         $this->dbConn = null;
     }
 
@@ -26,7 +26,7 @@ class DatabaseConnection
             die("connection failed :" . $dbConn->connect_error);
             //echo "No conn detected";
         } else {
-            echo "Database Conected";
+            // echo "Database Conected";
             return $dbConn;
         }
     }

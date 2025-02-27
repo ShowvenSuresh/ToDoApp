@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION["uid"])) {
+    header("location:MainPage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +28,7 @@
                 <input required="" class="input" type="password" name="password" />
                 <label class="label" for="input">Enter Password</label>
             </div>
-            <input class="submit-btn" type="submit" value="Sign In" name="signin" />
+            <input class="submit-btn" type="submit" value="Sign In" name="signIn" />
             <p>No Account?</p>
             <a href="./SignUp.php">
                 Sign UP
@@ -32,3 +39,9 @@
 </body>
 
 </html>
+<?php
+include("../Services/Authentication.php");
+if (isset($_POST["signIn"])) {
+    processLogin($_POST["email"], $_POST["password"],);
+}
+?>
