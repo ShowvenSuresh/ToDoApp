@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,37 +47,64 @@
         <div class="card">
             <p class="title">To-Do </p>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-                    The current link item
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                <a class="list-group-item list-group-item-action " aria-disabled="true">A disabled link item</a>
+                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
+                    The current button
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
             </div>
         </div>
         <div class="card">
             <p class="title1">Doing</p>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-                    The current link item
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                <a class="list-group-item list-group-item-action " aria-disabled="true">A disabled link item</a>
+                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
+                    The current button
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
             </div>
         </div>
         <div class="card">
             <p class="title2">Completed</p>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action " aria-current="true">
-                    The current link item
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                <a class="list-group-item list-group-item-action " aria-disabled="true">A disabled link item</a>
+                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
+                    The current button
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="dashboard">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add a New Task
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Task</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -95,4 +125,5 @@ if (isset($_POST["signOut"])) {
 } else if (isset($_POST["dashboard"])) {
     header("location:MainPage.php");
 }
+ob_end_flush();
 ?>
