@@ -9,7 +9,7 @@
 
 <body class="AuthBody">
     <div>
-        <form class="form-control" method="POST">
+        <form class="form-control1" method="POST">
             <p class="title0">Sign Up</p>
             <div class="input-field">
                 <input required="" class="input" type="text" name="email" />

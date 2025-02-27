@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("DatabaseConnection.php");
+include_once("DatabaseConnection.php");
 
 
 $db = new DatabaseConnection();
@@ -38,7 +38,7 @@ function processSignUp($email, $password, $firstName, $lastName, $phoneNumber)
     $sql = "insert into users(email,password,first_name,last_name,phone_num)
           values ('$email','$password','$firstName','$lastName','$phoneNumber')";
     $result = $dbConn->query($sql);
-    if ($result == true) {
+    if ($result === true) {
         echo "<script>alert('Sucessfull Signed Up...Please Proceed to  login')</script>";
         header("location:Login.php");
     }

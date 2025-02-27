@@ -1,3 +1,6 @@
+<?php
+ob_start() //start output buffering
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,6 +42,77 @@
             </button>
         </form>
     </div>
+    <div class="dashboard">
+        <div class="profile">
+            <p class="title3">User Details</p>
+            <ol class="list-group list-group-numbered">
+                <?php
+                include_once("../Services/UserDetails.php");
+                $data = getUserDetails();
+                if (!empty($data)) {
+                    echo "<li class='list-group-item'>" . $data["email"] . "</li>";
+                    echo "<li class='list-group-item'>" . $data["first_name"] . " " . $data["last_name"] . "</li>";
+                    echo "<li class='list-group-item'>" . $data["phone_num"] . "</li>";
+                }
+                ?>
+
+            </ol>
+            <hr>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary float-end " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Edit User Details
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST">
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput" class="form-label">Email</label>
+                                    <input type="text" class="form-control" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput2" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" name="firstname" value="<?php echo htmlspecialchars($_SESSION['first_name']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" name="lastname" value="<?php echo htmlspecialchars($_SESSION['last_name']); ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formGroupExampleInput2" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" name="phonenumber" value="<?php echo htmlspecialchars($_SESSION['phone_num']); ?>">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <input type="submit" name="update" class="btn btn-primary" value="Save Changes">
+
+                                </div>
+                            </form>
+                            <?php
+                            include_once("../Services/UserDetails.php");
+                            if (isset($_POST["update"])) {
+                                //echo "all here";
+                                updateDetails($_POST["email"], $_POST["firstname"], $_POST["lastname"], $_POST["phonenumber"]);
+                            }
+                            ?>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 
@@ -56,4 +130,5 @@ if (isset($_POST["signOut"])) {
 } else if (isset($_POST["dashboard"])) {
     header("location:MainPage.php");
 }
+ob_end_flush(); //flush the output buffer if not cannot modify the header
 ?>

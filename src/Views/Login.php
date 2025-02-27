@@ -17,7 +17,7 @@ if (isset($_SESSION["uid"])) {
 
 <body class="AuthBody">
     <div>
-        <form class="form-control" method="POST">
+        <form class="form-control1" method="POST">
             <p class="title0">To-Do App</p>
             <p class="title0">Login</p>
             <div class="input-field">
