@@ -18,8 +18,8 @@ if (isset($_SESSION["uid"])) {
 <body class="AuthBody">
     <div>
         <form class="form-control" method="POST">
-            <p class="title">To-Do App</p>
-            <p class="title">Login</p>
+            <p class="title0">To-Do App</p>
+            <p class="title0">Login</p>
             <div class="input-field">
                 <input required="" class="input" type="text" name="email" />
                 <label class="label" for="input">Enter Email</label>
