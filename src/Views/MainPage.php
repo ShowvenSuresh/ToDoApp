@@ -9,7 +9,6 @@ ob_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="Styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <title>ToDoApp</title>
 </head>
 
@@ -47,13 +46,13 @@ ob_start();
         <div class="card">
             <p class="title">To-Do </p>
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
+                <button type="button" class="list-group-item list-group-item-action " data-bs-toggle="modal" data-bs-target="#taskDetails" aria-current="true">
                     The current button
                 </button>
-                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
             </div>
         </div>
         <div class="card">
@@ -62,10 +61,10 @@ ob_start();
                 <button type="button" class="list-group-item list-group-item-action " aria-current="true">
                     The current button
                 </button>
-                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
             </div>
         </div>
         <div class="card">
@@ -74,10 +73,10 @@ ob_start();
                 <button type="button" class="list-group-item list-group-item-action " aria-current="true">
                     The current button
                 </button>
-                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action">A disabled button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
             </div>
         </div>
     </div>
@@ -85,30 +84,100 @@ ob_start();
 
     <div class="dashboard">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTask">
             Add a New Task
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Task</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
-                        ...
+                        <form method="POST">
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Task name</label>
+                                    <input type="text" class="form-control" name="taskname" required="" placeholder="Task Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" type="text" name="description" placeholder="Description" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Due Date</label>
+                                    <input type="date" class="form-control" name="duedate" required="" placeholder="Due Date">
+                                </div>
+                                <div class="row-md-3">
+                                    <label for="validationCustom04" class="form-label">Priority</label>
+                                    <select class="form-select" name="priority" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                    </select>
+
+                                    <label for="validationCustom04" class="form-label">Category</label>
+                                    <select class="form-select" name="category" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>Assignments & Homework</option>
+                                        <option>Exams & Quizzes</option>
+                                        <option>Projects & Group Work</option>
+                                        <option>Personal & Extracurricular </option>
+                                    </select>
+                                    <label for="validationCustom04" class="form-label">Status</label>
+                                    <select class="form-select" name="status" required>
+                                        <option selected disabled value="To-Do">To-Do</option>
+                                        <option disabled>Doing</option>
+                                        <option disabled>Completed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="inserttask" class="btn btn-primary">Add Task Loh</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <?php
+    include_once("../Services/TaskDetails.php");
+    if (isset($_POST["inserttask"])) {
+        addTask($_POST["taskname"], $_POST["description"], $_POST["duedate"], $_POST["priority"], $_POST["category"], "To-Do");
+    }
+    ?>
+
+    <!-- Modal -->
+    <div class="modal fade" id="taskDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

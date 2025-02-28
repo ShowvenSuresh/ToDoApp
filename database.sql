@@ -20,7 +20,7 @@ create table tasks (
     priority varchar(255) not null,
     category varchar(255) not null,
     status varchar(255) not null,
-    date_created date,
+    isarchive boolean not null,
     foreign key (uid) references users(uid)
 );
 
