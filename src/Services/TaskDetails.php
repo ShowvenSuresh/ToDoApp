@@ -18,3 +18,15 @@ function addTask($taskName, $description, $dueDate, $priority, $category, $statu
         header("location:MainPage.php");
     }
 }
+
+function getTaskName()
+{
+    global $dbConn;
+    $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
+    $result = $dbConn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        return $data;
+    }
+}
