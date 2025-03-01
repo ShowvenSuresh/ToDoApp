@@ -46,37 +46,64 @@ ob_start();
         <div class="card">
             <p class="title">To-Do </p>
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " data-bs-toggle="modal" data-bs-target="#taskDetails" aria-current="true">
-                    The current button
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
+                <?php
+                include_once("../Services/TaskDetails.php");
+                $result = getTaskName(1);
+
+                if (!empty($result)) {
+                    while ($name = $result->fetch_assoc())
+                        echo "
+                    <form method='POST'>
+                    <button type 'button' class='list-group-item list-group-item-action '  aria-current='true' name='taskname' value='" . $name['task_name'] . "'>
+                " . $name['task_name'] . "
+            </button>
+            </form>";
+                }
+                //data-bs-toggle='modal' data-bs-target='#taskDetails'
+                ?>
             </div>
         </div>
         <div class="card">
             <p class="title1">Doing</p>
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
-                    The current button
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
+                <?php
+                include_once("../Services/TaskDetails.php");
+                $result = getTaskName(2);
+
+                if (!empty($result)) {
+                    while ($name = $result->fetch_assoc())
+                        echo "
+                    <form method='POST'>
+                    <button type 'button' class='list-group-item list-group-item-action '  aria-current='true' name='taskname' value='" . $name['task_name'] . "'>
+                " . $name['task_name'] . "
+            </button>
+            </form>";
+                }
+
+                ?>
             </div>
         </div>
         <div class="card">
             <p class="title2">Completed</p>
             <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action " aria-current="true">
-                    The current button
-                </button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A second button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A third button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A fourth button item</button>
-                <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#taskDetails">A disabled button item</button>
+                <?php
+                include_once("../Services/TaskDetails.php");
+                $result = getTaskName(3);
+
+                if (!empty($result)) {
+                    while ($name = $result->fetch_assoc())
+
+                        echo "
+                       <form method='POST'>
+                    <button type 'button' class='list-group-item list-group-item-action '  aria-current='true' name='taskname' value='" . $name['task_name'] . "'>
+                " . $name['task_name'] . "
+            </button>
+            </form>";
+                }
+
+
+
+                ?>
             </div>
         </div>
     </div>
@@ -158,6 +185,19 @@ ob_start();
         addTask($_POST["taskname"], $_POST["description"], $_POST["duedate"], $_POST["priority"], $_POST["category"], "To-Do");
     }
     ?>
+    <?php
+    if (isset($_POST["taskname"])) {
+        $name = $_POST["taskname"];
+        unset($_POST["taskname"]);
+        $taskItems = getTaskDetailsBasedOnName($name);
+        echo "<script>
+            window.onload = function() {
+                var myModal = new bootstrap.Modal(document.getElementById('taskDetails'));
+                myModal.show();
+            };
+          </script>";
+    }
+    ?>
 
     <!-- Modal -->
     <div class="modal fade" id="taskDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -168,7 +208,8 @@ ob_start();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <?php echo $name;
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -177,6 +218,7 @@ ob_start();
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

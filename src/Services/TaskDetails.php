@@ -19,14 +19,45 @@ function addTask($taskName, $description, $dueDate, $priority, $category, $statu
     }
 }
 
-function getTaskName()
+function getTaskName($status)
 {
     global $dbConn;
-    $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
+
+    switch ($status) {
+        case 1:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='To-Do' and isarchive=0";
+            break;
+        case 2:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='Doing' and isarchive=0";
+            break;
+        case 3:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='Completed' and isarchive=0";
+            break;
+        default:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";
+    }
+
     $result = $dbConn->query($sql);
 
     if ($result->num_rows > 0) {
-        $data = $result->fetch_assoc();
-        return $data;
+
+        return $result;
     }
 }
+
+function getTaskDetailsBasedOnName($taskName)
+{
+    global $dbConn;
+    $sql = "select task_name, description, due_date, priority,category,status from tasks where uid = '" . $_SESSION["uid"] . "' and task_name='$taskName'";
+    $result = $dbConn->query($sql);
+
+    if ($result->num_rows == 1) {
+        $taskDetails = $result->fetch_assoc();
+        return $taskDetails;
+    } else {
+        echo "ERROR";
+    }
+}
+
+
+function updateTask() {}
