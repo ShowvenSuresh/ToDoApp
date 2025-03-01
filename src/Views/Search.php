@@ -32,7 +32,11 @@
                 Notifications
             </button>
         </form>
-
+        <form method="POST">
+            <button class="value" type=submit name="archive">
+                Archive
+            </button>
+        </form>
         <form method="POST">
             <button class="value" type=submit name="signOut">
                 Logout
@@ -55,5 +59,7 @@ if (isset($_POST["signOut"])) {
     header("location:Search.php");
 } else if (isset($_POST["dashboard"])) {
     header("location:MainPage.php");
+} else if (isset($_POST["archive"])) {
+    header("location:Archive.php");
 }
 ?>
