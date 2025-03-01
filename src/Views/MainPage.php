@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +189,7 @@ ob_start();
     <?php
     if (isset($_POST["taskname"])) {
         $name = $_POST["taskname"];
-        unset($_POST["taskname"]);
+
         $taskItems = getTaskDetailsBasedOnName($name);
         echo "<script>
             window.onload = function() {
@@ -204,21 +205,95 @@ ob_start();
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Details</h1>
+                    <h1 class="modal-title fs-5" id="taskDetails">Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <?php echo $name;
-                    ?>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <input type="hidden" name="task_id" value="<?php echo htmlspecialchars($taskItems["task_id"] ?? ''); ?>">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Task name</label>
+                                <input type="text" class="form-control" name="taskname" value="<?php echo htmlspecialchars($taskItems["task_name"]); ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" type="text" name="description" rows="3"><?php echo htmlspecialchars($taskItems["description"]); ?></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Due Date</label>
+                                <input type="date" class="form-control" name="duedate" value="<?php echo htmlspecialchars($taskItems["due_date"]); ?>">
+                            </div>
+                            <div class="row-md-3">
+                                <label for="validationCustom04" class="form-label">Priority</label>
+                                <select class="form-select" name="priority">
+                                    <option disabled value="">Choose...</option>
+                                    <option <?php echo ($taskItems["priority"] == "Low") ? "selected" : ""; ?>>Low</option>
+                                    <option <?php echo ($taskItems["priority"] == "Medium") ? "selected" : ""; ?>>Medium</option>
+                                    <option <?php echo ($taskItems["priority"] == "High") ? "selected" : ""; ?>>High</option>
+                                </select>
+                            </div>
+
+                            <label for="validationCustom04" class="form-label">Category</label>
+                            <select class="form-select" name="category">
+                                <option disabled value="">Choose...</option>
+                                <option <?php echo ($taskItems["category"] == "Assignments & Homework") ? "selected" : ""; ?>>Assignments & Homework</option>
+                                <option <?php echo ($taskItems["category"] == "Exams & Quizzes") ? "selected" : ""; ?>>Exams & Quizzes</option>
+                                <option <?php echo ($taskItems["category"] == "Projects & Group Work") ? "selected" : ""; ?>>Projects & Group Work</option>
+                                <option <?php echo ($taskItems["category"] == "Personal & Extracurricular") ? "selected" : ""; ?>>Personal & Extracurricular</option>
+                            </select>
+                            <label for="validationCustom04" class="form-label">Status</label>
+                            <select class="form-select" name="status">
+                                <option <?php echo ($taskItems["status"] == "To-Do") ? "selected" : ""; ?> value="To-Do">To-Do</option>
+                                <option <?php echo ($taskItems["status"] == "Doing") ? "selected" : ""; ?> value="Doing">Doing</option>
+                                <option <?php echo ($taskItems["status"] == "Completed") ? "selected" : ""; ?> value="Completed">Completed</option>
+                            </select>
+                            <input type="hidden" name="isarchive" value="0">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="isarchive" value="1" id="flexCheckDefault"
+                                    <?php echo ($taskItems["isarchive"] == 1) ? "checked" : ""; ?>>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Archive?
+                                </label>
+                            </div>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="action" value="update" class="btn btn-primary">Update</button>
+                    <button type="submit" name="action" value="delete" class="btn btn-danger">DELETE</button>
                 </div>
+                </form>
             </div>
+
+
         </div>
+
     </div>
 
+    </div>
+
+
+    <?php
+
+    echo $taskItems["task_id"];
+    if (isset($_POST["action"]) && $_POST["action"] === "update") {
+        updateTask(
+            $_POST["task_id"],
+            $_POST["taskname"],
+            $_POST["description"],
+            $_POST["duedate"],
+            $_POST["priority"],
+            $_POST["category"],
+            $_POST["status"],
+            $_POST["isarchive"]
+        );
+    } else if (isset($_POST["action"]) && $_POST["action"] === "delete") {
+
+        deleteTask($taskItems["task_id"]);
+    }
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

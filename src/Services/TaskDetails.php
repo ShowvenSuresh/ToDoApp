@@ -15,6 +15,7 @@ function addTask($taskName, $description, $dueDate, $priority, $category, $statu
     $result = $dbConn->query($sql);
 
     if ($result === true) {
+        unset($_POST);
         header("location:MainPage.php");
     }
 }
@@ -48,7 +49,7 @@ function getTaskName($status)
 function getTaskDetailsBasedOnName($taskName)
 {
     global $dbConn;
-    $sql = "select task_name, description, due_date, priority,category,status from tasks where uid = '" . $_SESSION["uid"] . "' and task_name='$taskName'";
+    $sql = "select task_id,task_name, description, due_date, priority,category,status from tasks where uid = '" . $_SESSION["uid"] . "' and task_name='$taskName'";
     $result = $dbConn->query($sql);
 
     if ($result->num_rows == 1) {
@@ -60,4 +61,42 @@ function getTaskDetailsBasedOnName($taskName)
 }
 
 
-function updateTask() {}
+function updateTask($taskId, $taskName, $description, $dueDate, $priority, $category, $status, $isArchive)
+{
+    global $dbConn;
+    $sql = "UPDATE tasks 
+            SET task_name = '$taskName', 
+                description = '$description', 
+                due_date = '$dueDate', 
+                priority = '$priority', 
+                category = '$category', 
+                status = '$status', 
+                isarchive = '$isArchive' 
+             WHERE task_id = '$taskId'";
+
+    $result = $dbConn->query($sql);
+
+    if ($result === true) {
+        // Redirect on success and exit to prevent further output
+        header("Location: MainPage.php");
+        exit;
+    } else {
+        // Output the SQL error for debugging 
+        echo "<script>alert('Error updating task: " . $dbConn->error . "');</script>";
+    }
+}
+
+
+function deleteTask($taskId)
+{
+    global $dbConn;
+    $sql = "delete from tasks where task_id='$taskId'";
+    $result = $dbConn->query($sql);
+
+    if ($result === true) {
+        header("location:MainPage.php"); //reload the page to  see the changes 
+        return true;
+    } else {
+        echo "<script>arlet('error')</script>";
+    }
+}
