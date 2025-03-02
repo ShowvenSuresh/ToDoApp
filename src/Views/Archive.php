@@ -23,7 +23,7 @@ session_start();
         </form>
         <form method="POST">
             <button class="value" type="submit" name="search">
-                Search
+                View
             </button>
         </form>
         <form method="POST">
@@ -50,7 +50,7 @@ session_start();
     </div>
     <div class="dashboard">
         <div class="card">
-            <p class="title2">Completed</p>
+            <p class="title2">Archived Tasks</p>
             <div class="list-group">
                 <?php
                 include_once("../Services/TaskDetails.php");

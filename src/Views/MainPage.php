@@ -23,7 +23,7 @@ session_start();
         </form>
         <form method="POST">
             <button class="value" type="submit" name="search">
-                Search
+                View
             </button>
         </form>
         <form method="POST">

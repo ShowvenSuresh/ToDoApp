@@ -37,6 +37,10 @@ function getTaskName($status)
         case 4:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and  isarchive=1";
             break;
+        case 5:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
+            break;
+
         default:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";
     }
