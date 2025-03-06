@@ -40,6 +40,20 @@ function getTaskName($status)
         case 5:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
             break;
+        case 6:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Exams & Quizzes'";
+            break;
+        case 7:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Projects & Group Work'";
+            break;
+
+        case 8:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Personal & Extracurricular'";
+            break;
+
+        case 9:
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Assignments & Homework'";
+            break;
 
         default:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";

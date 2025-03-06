@@ -47,6 +47,27 @@ session_start();
             </button>
         </form>
     </div>
+    <div class="filterDiv">
+        <div>
+            <p>Filter By:</p>
+        </div>
+        <div>
+            <select class="form-select" aria-label="Default select example">
+                <option value="9">Open this select menu</option>
+                <option value="7">One</option>
+                <option value="8">Two</option>
+                <option value="6">Three</option>
+            </select>
+        </div>
+        <div>
+            <select class="form-select" aria-label="Default select example">
+                <option value="9">Open this select menu</option>
+                <option value="7">One</option>
+                <option value="8">Two</option>
+                <option value="6">Three</option>
+            </select>
+        </div>
+    </div>
     <div class="dashboard">
         <div class="card">
             <p class="title3">View Tasks</p>
@@ -68,6 +89,7 @@ session_start();
                 ?>
             </div>
         </div>
+
     </div>
     <?php
     if (isset($_POST["taskname"])) {

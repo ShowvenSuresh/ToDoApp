@@ -322,3 +322,11 @@
   height: 18px;
   animation: pulse 1s linear infinite;
 }
+
+.filterDiv {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  align-items: center;
+  justify-content: space-evenly;
+}
