@@ -40,20 +40,6 @@ function getTaskName($status)
         case 5:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
             break;
-        case 6:
-            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Exams & Quizzes'";
-            break;
-        case 7:
-            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Projects & Group Work'";
-            break;
-
-        case 8:
-            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Personal & Extracurricular'";
-            break;
-
-        case 9:
-            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'and category='Assignments & Homework'";
-            break;
 
         default:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";
@@ -119,5 +105,26 @@ function deleteTask($taskId)
         return true;
     } else {
         echo "<script>arlet('error')</script>";
+    }
+}
+
+function getFiltredTask($filter, $status)
+{
+    global $dbConn;
+    switch ($status) {
+        case 1:
+            $sql = "select task_name from tasks where category='$filter' and uid='" . $_SESSION["uid"] . "' ";
+            break;
+        case 2:
+            $sql = "select task_name from tasks where priority='$filter' and uid='" . $_SESSION["uid"] . "' ";
+            break;
+    }
+    $result = $dbConn->query($sql);
+
+    $result = $dbConn->query($sql);
+
+    if ($result->num_rows > 0) {
+
+        return $result;
     }
 }

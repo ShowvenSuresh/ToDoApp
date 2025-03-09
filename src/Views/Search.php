@@ -52,20 +52,25 @@ session_start();
             <p>Filter By:</p>
         </div>
         <div>
-            <select class="form-select" aria-label="Default select example">
-                <option value="9">Open this select menu</option>
-                <option value="7">One</option>
-                <option value="8">Two</option>
-                <option value="6">Three</option>
-            </select>
+            <form method="POST">
+                <select class="form-select" aria-label="Default select example" name="filterCategory" onchange="this.form.submit()">
+                    <option value="" selected disabled>Category</option>
+                    <option value="Assignments & Homework">Assignments & Homework</option>
+                    <option value="Exams & Quizzes">Exams & Quizzes</option>
+                    <option value="Projects & Group Work">Projects & Group Work</option>
+                    <option value="Personal & Extracurricular">Personal & Extracurricular</option>
+                </select>
+            </form>
         </div>
         <div>
-            <select class="form-select" aria-label="Default select example">
-                <option value="9">Open this select menu</option>
-                <option value="7">One</option>
-                <option value="8">Two</option>
-                <option value="6">Three</option>
-            </select>
+            <form method="POST">
+                <select class="form-select" aria-label="Default select example" name="filterPriority" onchange="this.form.submit()">
+                    <option value="" selected disabled>Priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </form>
         </div>
     </div>
     <div class="dashboard">
@@ -74,7 +79,17 @@ session_start();
             <div class="list-group">
                 <?php
                 include_once("../Services/TaskDetails.php");
-                $result = getTaskName(5);
+                if (isset($_POST["filterCategory"])) {
+                    $filter = $_POST["filterCategory"];
+                    $result = getFiltredTask($filter, 1);
+                    unset($_POST["filterCategory"]);
+                } else if (isset($_POST["filterPriority"])) {
+                    $filter = $_POST["filterPriority"];
+                    $result = getFiltredTask($filter, 2);
+                    unset($_POST["filterPriority"]);
+                } else {
+                    getTaskName(5);
+                }
 
                 if (!empty($result)) {
                     while ($name = $result->fetch_assoc())
