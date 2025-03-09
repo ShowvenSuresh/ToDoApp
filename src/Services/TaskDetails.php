@@ -40,6 +40,10 @@ function getTaskName($status)
         case 5:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
             break;
+        case 6:
+            $thresholdDate = date('Y-m-d', strtotime('+2 days'));
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and status='To-Do' or 'Doing'";
+            break;
 
         default:
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";
@@ -127,4 +131,20 @@ function getFiltredTask($filter, $status)
 
         return $result;
     }
+}
+
+function getNotificationCount()
+{
+    global $dbConn;
+    // Define your threshold for due date approaching (e.g., next 2 days)
+    $thresholdDate = date('Y-m-d', strtotime('+2 days'));
+
+
+    $sql = "select count(*) as count from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and status='To-Do' or 'Doing'";
+    $result = $dbConn->query($sql);
+
+
+    $data = $result->fetch_assoc();
+
+    return $data['count'];
 }

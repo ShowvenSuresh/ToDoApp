@@ -23,7 +23,7 @@ session_start();
         </form>
         <form method="POST">
             <button class="value" type="submit" name="search">
-                View
+                Search
             </button>
         </form>
         <form method="POST">
@@ -32,8 +32,19 @@ session_start();
             </button>
         </form>
         <form method="POST">
-            <button class="value" type="submit" name="notifications">
+            <button type="submit" name="notifications" class="btn btn-primary position-relative">
                 Notifications
+                <?php
+                include_once("../Services/TaskDetails.php");
+
+                $notificationCount = getNotificationCount();
+
+                if ($notificationCount > 0): ?>
+                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-dark rounded-pill">
+                        <?php echo $notificationCount; ?>
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
+                <?php endif; ?>
             </button>
         </form>
         <form method="POST">
