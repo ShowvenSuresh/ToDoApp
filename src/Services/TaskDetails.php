@@ -42,7 +42,7 @@ function getTaskName($status)
             break;
         case 6:
             $thresholdDate = date('Y-m-d', strtotime('+2 days'));
-            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and status='To-Do' or 'Doing'";
+            $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and (status='To-Do' or status='Doing')";
             break;
 
         default:
@@ -140,7 +140,7 @@ function getNotificationCount()
     $thresholdDate = date('Y-m-d', strtotime('+2 days'));
 
 
-    $sql = "select count(*) as count from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and status='To-Do' or 'Doing'";
+    $sql = "select count(*) as count from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and (status='To-Do' or status='Doing')";
     $result = $dbConn->query($sql);
 
 

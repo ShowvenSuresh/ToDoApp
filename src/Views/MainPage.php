@@ -42,7 +42,7 @@ session_start();
                 if ($notificationCount > 0): ?>
                     <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-dark rounded-pill">
                         <?php echo $notificationCount; ?>
-                        <span class="visually-hidden">New alerts</span>
+                        <span class="visually-hidden"></span>
                     </span>
                 <?php endif; ?>
             </button>

@@ -61,7 +61,7 @@ session_start();
     </div>
     <div class="dashboard">
         <div class="card">
-            <p class="title">Notifications</p>
+            <p class="title">Urgent tasks to complete</p>
             <div class="list-group">
                 <?php
                 include_once("../Services/TaskDetails.php");
