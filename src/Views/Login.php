@@ -1,4 +1,5 @@
 <?php
+include_once("../Services/ErrorHandling.php");
 session_start();
 
 if (isset($_SESSION["uid"])) {

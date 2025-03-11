@@ -1,4 +1,5 @@
 <?php
+include_once("../Services/ErrorHandling.php");
 ob_start();
 session_start();
 ?>

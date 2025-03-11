@@ -1,3 +1,7 @@
+<?php
+include_once("../Services/ErrorHandling.php");
+?>
+
 <html lang="en">
 
 <head>

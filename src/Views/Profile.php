@@ -1,4 +1,5 @@
 <?php
+include_once("../Services/ErrorHandling.php");
 ob_start() //start output buffering
 ?>
 <!DOCTYPE html>
