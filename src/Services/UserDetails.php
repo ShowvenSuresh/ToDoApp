@@ -28,7 +28,7 @@ function getUserDetails() // this function just recives the current user data an
 function updateDetails($email, $firstName, $lastName, $phoneNumber) //this function overides the all the exsiting data in the current table
 {
     global $dbConn;
-    $sql = "update users set email='$email' ,first_name='$firstName' ,last_name='$lastName' ,phone_num='$phoneNumber' where uid='" . $_SESSION['uid'] . "'";
+    $sql = "update users set email='$email' ,first_name='$firstName' ,last_name='$lastName' ,phone_num='$phoneNumber' where uid='" . $_SESSION['uid'] . "'";//updatesthe user details
     $result = $dbConn->query($sql);
 
     if ($result === true) {

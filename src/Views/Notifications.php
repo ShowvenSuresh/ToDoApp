@@ -114,11 +114,11 @@ session_start();
                             <input type="hidden" name="task_id" value="<?php echo htmlspecialchars($taskItems["task_id"] ?? ''); ?>">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Task name</label>
-                                <input disable type="text" class="form-control" name="taskname" value="<?php echo htmlspecialchars($taskItems["task_name"]); ?>">
+                                <input  type="text" class="form-control" name="taskname" disable value="<?php echo htmlspecialchars($taskItems["task_name"]); ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
-                                <textarea disable class="form-control" id="exampleFormControlTextarea1" type="text" name="description" rows="3"><?php echo htmlspecialchars($taskItems["description"]); ?></textarea>
+                                <textarea  class="form-control" id="exampleFormControlTextarea1" type="text" name="description" rows="3" disable ><?php echo htmlspecialchars($taskItems["description"]); ?></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Due Date</label>

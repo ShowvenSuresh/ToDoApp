@@ -1,4 +1,10 @@
 <?php
+//clears the log flies so the cram the errors
+if (file_exists(__DIR__ . '/../../Logs/Error.log')) {
+    file_put_contents(__DIR__ . '/../../Logs/Error.log', ''); // Clear the file
+}
+
+
 // Turn off error display
 ini_set('display_errors', '0');
 
