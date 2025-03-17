@@ -32,19 +32,19 @@ function getTaskName($status)
      // Determine SQL query based on task status
 
     switch ($status) {
-        case 1:
+        case 1: // get the task name with the status to-do
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='To-Do' and isarchive=0";
             break;
-        case 2:
+        case 2://get the task name witht the status doing
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='Doing' and isarchive=0";
             break;
-        case 3:
+        case 3:// get the task name with the status completed 
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and status ='Completed' and isarchive=0";
             break;
-        case 4:
+        case 4://gget all the task that is archived 
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and  isarchive=1";
             break;
-        case 5:
+        case 5://get all the task names
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "'";
             break;
         case 6:  // Retrieve tasks that are high priority or have a due date within 2 days
@@ -52,7 +52,7 @@ function getTaskName($status)
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and (priority = 'High' OR due_date <= '$thresholdDate') and (status='To-Do' or status='Doing')";
             break;
 
-        default:
+        default:// this will get all th task anem that is not archived 
             $sql = "select task_name from tasks where uid = '" . $_SESSION["uid"] . "' and isarchive=0";
     }
 
