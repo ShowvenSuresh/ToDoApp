@@ -77,7 +77,7 @@ session_start();
             </button>
             </form>";
                 }
-                //data-bs-toggle='modal' data-bs-target='#taskDetails'
+                //data-bs-toggle='modal' data-bs-target='#taskDetails' // just for debuggin
                 ?>
             </div>
         </div>
