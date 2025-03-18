@@ -194,6 +194,9 @@ session_start();
     </div>
 
 </body>
+<footer class="footer">
+        <p>This business is fictitious and part of a university course.</p>
+    </footer>
 
 </html>
 <?php

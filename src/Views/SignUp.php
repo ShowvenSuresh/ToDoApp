@@ -43,8 +43,13 @@ include_once("../Services/ErrorHandling.php");
         </form>
 
     </div>
-</body>
+    <div>
 
+</div>
+</body>
+    <footer class="footer">
+        <p>This business is fictitious and part of a university course.</p>
+    </footer>
 </html>
 <?php
 include("../Services/Authentication.php");

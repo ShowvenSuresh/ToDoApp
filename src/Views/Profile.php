@@ -132,6 +132,10 @@ ob_start() //start output buffering
 
 </body>
 
+<footer class="footer">
+        <p>This business is fictitious and part of a university course.</p>
+    </footer>
+
 </html>
 <?php
 include("../Services/Authentication.php");
